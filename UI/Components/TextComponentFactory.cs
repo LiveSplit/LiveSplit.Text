@@ -17,7 +17,7 @@ namespace LiveSplit.UI.Components
 
         public string Description
         {
-            get { return ""; }
+            get { return "Displays any text that you want it to show."; }
         }
 
         public ComponentCategory Category
