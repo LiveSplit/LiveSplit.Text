@@ -143,12 +143,6 @@ namespace LiveSplit.UI.Components
             return Settings.GetSettings(document);
         }
 
-
-        public void RenameComparison(string oldName, string newName)
-        {
-        }
-
-
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             InternalComponent.NameLabel.Text = Settings.Text1;
