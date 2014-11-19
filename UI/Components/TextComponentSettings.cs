@@ -239,8 +239,6 @@ namespace LiveSplit.UI.Components
         {
             var dialog = new FontDialog();
             dialog.Font = previousFont;
-            /*dialog.MaxSize = (int)previousFont.SizeInPoints;
-            dialog.MinSize = (int)previousFont.SizeInPoints;*/
             dialog.MinSize = minSize;
             dialog.MaxSize = maxSize;
             try
