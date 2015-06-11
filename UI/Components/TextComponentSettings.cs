@@ -139,69 +139,44 @@ namespace LiveSplit.UI.Components
             GradientString = cmbGradientType.SelectedItem.ToString();
         }
 
-        private T ParseEnum<T>(XmlElement element)
-        {
-            return (T)Enum.Parse(typeof(T), element.InnerText);
-        }
-
         public void SetSettings(XmlNode node)
         {
             var element = (XmlElement)node;
-            Version version;
-            if (element["Version"] != null)
-                version = Version.Parse(element["Version"].InnerText);
-            else
-                version = new Version(1, 0, 0, 0);
-            TextColor = ParseColor(element["TextColor"]);
-            OverrideTextColor = Boolean.Parse(element["OverrideTextColor"].InnerText);
-            TimeColor = ParseColor(element["TimeColor"]);
-            OverrideTimeColor = Boolean.Parse(element["OverrideTimeColor"].InnerText);
-            BackgroundColor = ParseColor(element["BackgroundColor"]);
-            BackgroundColor2 = ParseColor(element["BackgroundColor2"]);
-            GradientString = element["BackgroundGradient"].InnerText;
-            Text1 = element["Text1"].InnerText;
-            Text2 = element["Text2"].InnerText;
-            Font1 = GetFontFromElement(element["Font1"]);
-            Font2 = GetFontFromElement(element["Font2"]);
-            OverrideFont1 = Boolean.Parse(element["OverrideFont1"].InnerText);
-            OverrideFont2 = Boolean.Parse(element["OverrideFont2"].InnerText);
-            if (version >= new Version(1, 4))
-                Display2Rows = Boolean.Parse(element["Display2Rows"].InnerText);
-            else
-                Display2Rows = false;
+            TextColor = SettingsHelper.ParseColor(element["TextColor"]);
+            OverrideTextColor = SettingsHelper.ParseBool(element["OverrideTextColor"]);
+            TimeColor = SettingsHelper.ParseColor(element["TimeColor"]);
+            OverrideTimeColor = SettingsHelper.ParseBool(element["OverrideTimeColor"]);
+            BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]);
+            BackgroundColor2 = SettingsHelper.ParseColor(element["BackgroundColor2"]);
+            GradientString = SettingsHelper.ParseString(element["BackgroundGradient"]);
+            Text1 = SettingsHelper.ParseString(element["Text1"]);
+            Text2 = SettingsHelper.ParseString(element["Text2"]);
+            Font1 = SettingsHelper.GetFontFromElement(element["Font1"]);
+            Font2 = SettingsHelper.GetFontFromElement(element["Font2"]);
+            OverrideFont1 = SettingsHelper.ParseBool(element["OverrideFont1"]);
+            OverrideFont2 = SettingsHelper.ParseBool(element["OverrideFont2"]);
+            Display2Rows = SettingsHelper.ParseBool(element["Display2Rows"], false);
         }
 
         public XmlNode GetSettings(XmlDocument document)
         {
             var parent = document.CreateElement("Settings");
-            parent.AppendChild(ToElement(document, "Version", "1.4"));
-            parent.AppendChild(ToElement(document, TextColor, "TextColor"));
-            parent.AppendChild(ToElement(document, "OverrideTextColor", OverrideTextColor));
-            parent.AppendChild(ToElement(document, TimeColor, "TimeColor"));
-            parent.AppendChild(ToElement(document, "OverrideTimeColor", OverrideTimeColor));
-            parent.AppendChild(ToElement(document, BackgroundColor, "BackgroundColor"));
-            parent.AppendChild(ToElement(document, BackgroundColor2, "BackgroundColor2"));
-            parent.AppendChild(ToElement(document, "BackgroundGradient", BackgroundGradient));
-            parent.AppendChild(ToElement(document, "Text1", Text1));
-            parent.AppendChild(ToElement(document, "Text2", Text2));
-            parent.AppendChild(CreateFontElement(document, "Font1", Font1));
-            parent.AppendChild(CreateFontElement(document, "Font2", Font2));
-            parent.AppendChild(ToElement(document, "OverrideFont1", OverrideFont1));
-            parent.AppendChild(ToElement(document, "OverrideFont2", OverrideFont2));
-            parent.AppendChild(ToElement(document, "Display2Rows", Display2Rows));
+            parent.AppendChild(SettingsHelper.ToElement(document, "Version", "1.4"));
+            parent.AppendChild(SettingsHelper.ToElement(document, TextColor, "TextColor"));
+            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideTextColor", OverrideTextColor));
+            parent.AppendChild(SettingsHelper.ToElement(document, TimeColor, "TimeColor"));
+            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideTimeColor", OverrideTimeColor));
+            parent.AppendChild(SettingsHelper.ToElement(document, BackgroundColor, "BackgroundColor"));
+            parent.AppendChild(SettingsHelper.ToElement(document, BackgroundColor2, "BackgroundColor2"));
+            parent.AppendChild(SettingsHelper.ToElement(document, "BackgroundGradient", BackgroundGradient));
+            parent.AppendChild(SettingsHelper.ToElement(document, "Text1", Text1));
+            parent.AppendChild(SettingsHelper.ToElement(document, "Text2", Text2));
+            parent.AppendChild(SettingsHelper.CreateFontElement(document, "Font1", Font1));
+            parent.AppendChild(SettingsHelper.CreateFontElement(document, "Font2", Font2));
+            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideFont1", OverrideFont1));
+            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideFont2", OverrideFont2));
+            parent.AppendChild(SettingsHelper.ToElement(document, "Display2Rows", Display2Rows));
             return parent;
-        }
-
-        private Color ParseColor(XmlElement colorElement)
-        {
-            return Color.FromArgb(Int32.Parse(colorElement.InnerText, NumberStyles.HexNumber));
-        }
-
-        private XmlElement ToElement(XmlDocument document, Color color, string name)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = color.ToArgb().ToString("X8");
-            return element;
         }
 
         private void ColorButtonClick(object sender, EventArgs e)
@@ -214,80 +189,16 @@ namespace LiveSplit.UI.Components
             button.BackColor = picker.SelectedColor;
         }
 
-        private XmlElement ToElement<T>(XmlDocument document, String name, T value)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString();
-            return element;
-        }
-
-        private Font GetFontFromElement(XmlElement element)
-        {
-            if (!element.IsEmpty)
-            {
-                var bf = new BinaryFormatter();
-
-                var base64String = element.InnerText;
-                var data = Convert.FromBase64String(base64String);
-                var ms = new MemoryStream(data);
-                return (Font)bf.Deserialize(ms);
-            }
-            return null;
-        }
-
-        private Font ChooseFont(Font previousFont, int minSize, int maxSize)
-        {
-            var dialog = new FontDialog();
-            dialog.Font = previousFont;
-            dialog.MinSize = minSize;
-            dialog.MaxSize = maxSize;
-            try
-            {
-                var result = dialog.ShowDialog(this);
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    return dialog.Font;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-
-                MessageBox.Show("This font is not supported.", "Font Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            return previousFont;
-        }
-
         private void btnFont1_Click(object sender, EventArgs e)
         {
-            Font1 = ChooseFont(Font1, 7, 20);
+            Font1 = SettingsHelper.ChooseFont(this, Font1, 7, 20);
             lblFont.Text = Font1String;
         }
 
         private void btnFont2_Click(object sender, EventArgs e)
         {
-            Font2 = ChooseFont(Font2, 7, 20);
+            Font2 = SettingsHelper.ChooseFont(this, Font2, 7, 20);
             lblFont.Text = Font2String;
-        }
-
-        private XmlElement CreateFontElement(XmlDocument document, String elementName, Font font)
-        {
-            var element = document.CreateElement(elementName);
-
-            if (font != null)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    var bf = new BinaryFormatter();
-
-                    bf.Serialize(ms, font);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
-                }
-            }
-
-            return element;
         }
     }
 }
