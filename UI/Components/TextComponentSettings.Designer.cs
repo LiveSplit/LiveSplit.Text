@@ -200,6 +200,7 @@
             this.chkFont.TabIndex = 0;
             this.chkFont.Text = "Override Layout Settings";
             this.chkFont.UseVisualStyleBackColor = true;
+            this.chkFont.CheckedChanged += new System.EventHandler(chkFont_CheckedChanged);
             // 
             // label5
             // 
@@ -263,6 +264,7 @@
             this.chkOverrideTextColor.TabIndex = 0;
             this.chkOverrideTextColor.Text = "Override Layout Settings";
             this.chkOverrideTextColor.UseVisualStyleBackColor = true;
+            this.chkOverrideTextColor.CheckedChanged += new System.EventHandler(chkOverrideTextColor_CheckedChanged);
             // 
             // label1
             // 
@@ -388,6 +390,7 @@
             this.chkFont2.TabIndex = 0;
             this.chkFont2.Text = "Override Layout Settings";
             this.chkFont2.UseVisualStyleBackColor = true;
+            this.chkFont2.CheckedChanged += new System.EventHandler(chkFont2_CheckedChanged);
             // 
             // label7
             // 
@@ -463,6 +466,7 @@
             this.chkOverrideTimeColor.TabIndex = 0;
             this.chkOverrideTimeColor.Text = "Override Layout Settings";
             this.chkOverrideTimeColor.UseVisualStyleBackColor = true;
+            this.chkOverrideTimeColor.CheckedChanged += new System.EventHandler(chkOverrideTimeColor_CheckedChanged);
             // 
             // label2
             // 
@@ -552,6 +556,7 @@
             this.Name = "TextComponentSettings";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Size = new System.Drawing.Size(459, 514);
+            this.Load += new System.EventHandler(TextComponentSettings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

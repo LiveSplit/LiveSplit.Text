@@ -83,12 +83,6 @@ namespace LiveSplit.UI.Components
             txtTwo.DataBindings.Add("Text", this, "Text2");
             chkFont.DataBindings.Add("Checked", this, "OverrideFont1", false, DataSourceUpdateMode.OnPropertyChanged);
             chkFont2.DataBindings.Add("Checked", this, "OverrideFont2", false, DataSourceUpdateMode.OnPropertyChanged);
-            this.Load += TextComponentSettings_Load;
-
-            chkOverrideTextColor.CheckedChanged += chkOverrideTextColor_CheckedChanged;
-            chkOverrideTimeColor.CheckedChanged += chkOverrideTimeColor_CheckedChanged;
-            chkFont.CheckedChanged += chkFont_CheckedChanged;
-            chkFont2.CheckedChanged += chkFont2_CheckedChanged;
         }
 
         void chkFont2_CheckedChanged(object sender, EventArgs e)
