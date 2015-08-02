@@ -80,6 +80,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UI\Components\TextComponentSettings.ja-JP.resx">
+      <DependentUpon>TextComponentSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Components\TextComponentSettings.resx">
       <DependentUpon>TextComponentSettings.cs</DependentUpon>
     </EmbeddedResource>
