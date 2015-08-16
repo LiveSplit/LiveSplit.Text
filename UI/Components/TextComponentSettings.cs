@@ -142,22 +142,32 @@ namespace LiveSplit.UI.Components
         public XmlNode GetSettings(XmlDocument document)
         {
             var parent = document.CreateElement("Settings");
-            parent.AppendChild(SettingsHelper.ToElement(document, "Version", "1.4"));
-            parent.AppendChild(SettingsHelper.ToElement(document, TextColor, "TextColor"));
-            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideTextColor", OverrideTextColor));
-            parent.AppendChild(SettingsHelper.ToElement(document, TimeColor, "TimeColor"));
-            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideTimeColor", OverrideTimeColor));
-            parent.AppendChild(SettingsHelper.ToElement(document, BackgroundColor, "BackgroundColor"));
-            parent.AppendChild(SettingsHelper.ToElement(document, BackgroundColor2, "BackgroundColor2"));
-            parent.AppendChild(SettingsHelper.ToElement(document, "BackgroundGradient", BackgroundGradient));
-            parent.AppendChild(SettingsHelper.ToElement(document, "Text1", Text1));
-            parent.AppendChild(SettingsHelper.ToElement(document, "Text2", Text2));
-            parent.AppendChild(SettingsHelper.CreateFontElement(document, "Font1", Font1));
-            parent.AppendChild(SettingsHelper.CreateFontElement(document, "Font2", Font2));
-            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideFont1", OverrideFont1));
-            parent.AppendChild(SettingsHelper.ToElement(document, "OverrideFont2", OverrideFont2));
-            parent.AppendChild(SettingsHelper.ToElement(document, "Display2Rows", Display2Rows));
+            CreateSettingsNode(document, parent);
             return parent;
+        }
+
+        public int GetSettingsHashCode()
+        {
+            return CreateSettingsNode(null, null);
+        }
+
+        private int CreateSettingsNode(XmlDocument document, XmlElement parent)
+        {
+            return SettingsHelper.CreateSetting(document, parent, "Version", "1.4") ^
+            SettingsHelper.CreateSetting(document, parent, "TextColor", TextColor) ^
+            SettingsHelper.CreateSetting(document, parent, "OverrideTextColor", OverrideTextColor) ^
+            SettingsHelper.CreateSetting(document, parent, "TimeColor", TimeColor) ^
+            SettingsHelper.CreateSetting(document, parent, "OverrideTimeColor", OverrideTimeColor) ^
+            SettingsHelper.CreateSetting(document, parent, "BackgroundColor", BackgroundColor) ^
+            SettingsHelper.CreateSetting(document, parent, "BackgroundColor2", BackgroundColor2) ^
+            SettingsHelper.CreateSetting(document, parent, "BackgroundGradient", BackgroundGradient) ^
+            SettingsHelper.CreateSetting(document, parent, "Text1", Text1) ^
+            SettingsHelper.CreateSetting(document, parent, "Text2", Text2) ^
+            SettingsHelper.CreateSetting(document, parent, "Font1", Font1) ^
+            SettingsHelper.CreateSetting(document, parent, "Font2", Font2) ^
+            SettingsHelper.CreateSetting(document, parent, "OverrideFont1", OverrideFont1) ^
+            SettingsHelper.CreateSetting(document, parent, "OverrideFont2", OverrideFont2) ^
+            SettingsHelper.CreateSetting(document, parent, "Display2Rows", Display2Rows);
         }
 
         private void ColorButtonClick(object sender, EventArgs e)
