@@ -12,15 +12,12 @@ namespace LiveSplit.UI.Components
         protected TextTextComponent InternalComponent { get; set; }
         public TextComponentSettings Settings { get; set; }
 
-        public float PaddingTop { get { return InternalComponent.PaddingTop; } }
-        public float PaddingLeft { get { return InternalComponent.PaddingLeft; } }
-        public float PaddingBottom { get { return InternalComponent.PaddingBottom; } }
-        public float PaddingRight { get { return InternalComponent.PaddingRight; } }
+        public float PaddingTop => InternalComponent.PaddingTop;
+        public float PaddingLeft => InternalComponent.PaddingLeft;
+        public float PaddingBottom => InternalComponent.PaddingBottom;
+        public float PaddingRight => InternalComponent.PaddingRight;
 
-        public IDictionary<string, Action> ContextMenuControls
-        {
-            get { return null; }
-        }
+        public IDictionary<string, Action> ContextMenuControls => null;
 
         public TextComponent(LiveSplitState state)
         {
@@ -39,7 +36,7 @@ namespace LiveSplit.UI.Components
                 = InternalComponent.ValueLabel.HasShadow
                 = state.LayoutSettings.DropShadows;
 
-            if (String.IsNullOrEmpty(Settings.Text1) || String.IsNullOrEmpty(Settings.Text2))
+            if (string.IsNullOrEmpty(Settings.Text1) || string.IsNullOrEmpty(Settings.Text2))
             {
                 InternalComponent.NameLabel.HorizontalAlignment = StringAlignment.Center;
                 InternalComponent.ValueLabel.HorizontalAlignment = StringAlignment.Center;
@@ -93,30 +90,15 @@ namespace LiveSplit.UI.Components
             InternalComponent.DrawHorizontal(g, state, height, clipRegion);
         }
 
-        public float VerticalHeight
-        {
-            get { return InternalComponent.VerticalHeight; }
-        }
+        public float VerticalHeight => InternalComponent.VerticalHeight;
 
-        public float MinimumWidth
-        {
-            get { return InternalComponent.MinimumWidth; }
-        }
+        public float MinimumWidth => InternalComponent.MinimumWidth; 
 
-        public float HorizontalWidth
-        {
-            get { return InternalComponent.HorizontalWidth; }
-        }
+        public float HorizontalWidth => InternalComponent.HorizontalWidth; 
 
-        public float MinimumHeight
-        {
-            get { return InternalComponent.MinimumHeight; }
-        }
+        public float MinimumHeight => InternalComponent.MinimumHeight;
 
-        public string ComponentName
-        {
-            get { return Settings.Text1 + " " + Settings.Text2; }
-        }
+        public string ComponentName => string.Join(" ", Settings.Text1, Settings.Text2);
 
         public Control GetSettingsControl(LayoutMode mode)
         {
@@ -149,9 +131,6 @@ namespace LiveSplit.UI.Components
         {
         }
 
-        public int GetSettingsHashCode()
-        {
-            return Settings.GetSettingsHashCode();
-        }
+        public int GetSettingsHashCode() => Settings.GetSettingsHashCode();
     }
 }

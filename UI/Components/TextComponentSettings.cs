@@ -16,20 +16,20 @@ namespace LiveSplit.UI.Components
         public Color BackgroundColor { get; set; }
         public Color BackgroundColor2 { get; set; }
         public GradientType BackgroundGradient { get; set; }
-        public String GradientString
+        public string GradientString
         {
             get { return BackgroundGradient.ToString(); }
             set { BackgroundGradient = (GradientType)Enum.Parse(typeof(GradientType), value); }
         }
 
-        public String Text1 { get; set; }
-        public String Text2 { get; set; }
+        public string Text1 { get; set; }
+        public string Text2 { get; set; }
 
         public Font Font1 { get; set; }
-        public String Font1String { get { return String.Format("{0} {1}", Font1.FontFamily.Name, Font1.Style); } }
+        public string Font1String { get { return string.Format("{0} {1}", Font1.FontFamily.Name, Font1.Style); } }
         public bool OverrideFont1 { get; set; }
         public Font Font2 { get; set; }
-        public String Font2String { get { return String.Format("{0} {1}", Font2.FontFamily.Name, Font2.Style); } }
+        public string Font2String { get { return string.Format("{0} {1}", Font2.FontFamily.Name, Font2.Style); } }
         public bool OverrideFont2 { get; set; }
 
         public LayoutMode Mode { get; set; }
