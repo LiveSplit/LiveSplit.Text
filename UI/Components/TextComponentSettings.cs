@@ -188,7 +188,7 @@ namespace LiveSplit.UI.Components
             var dialog = SettingsHelper.GetFontDialog(Font2, 7, 20);
             dialog.FontChanged += (s, ev) => Font2 = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
             dialog.ShowDialog(this);
-            lblFont.Text = Font2String;
+            lblFont2.Text = Font2String;
         }
     }
 }
