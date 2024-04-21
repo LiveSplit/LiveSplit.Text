@@ -52,8 +52,8 @@ namespace LiveSplit.UI.Components
             Text2 = "";
             OverrideFont1 = false;
             OverrideFont2 = false;
-            Font1 = new Font("Segoe UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
-            Font2 = new Font("Segoe UI", 13, FontStyle.Regular, GraphicsUnit.Pixel);
+            Font1 = new Font("Segoe UI", 16, FontStyle.Regular, GraphicsUnit.Pixel);
+            Font2 = new Font("Segoe UI", 16, FontStyle.Regular, GraphicsUnit.Pixel);
 
             chkOverrideTextColor.DataBindings.Add("Checked", this, "OverrideTextColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnTextColor.DataBindings.Add("BackColor", this, "TextColor", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -177,7 +177,7 @@ namespace LiveSplit.UI.Components
 
         private void btnFont1_Click(object sender, EventArgs e)
         {
-            var dialog = SettingsHelper.GetFontDialog(Font1, 7, 20);
+            var dialog = SettingsHelper.GetFontDialog(Font1, 11, 26);
             dialog.FontChanged += (s, ev) => Font1 = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
             dialog.ShowDialog(this);
             lblFont.Text = Font1String;
@@ -185,7 +185,7 @@ namespace LiveSplit.UI.Components
 
         private void btnFont2_Click(object sender, EventArgs e)
         {
-            var dialog = SettingsHelper.GetFontDialog(Font2, 7, 20);
+            var dialog = SettingsHelper.GetFontDialog(Font2, 11, 26);
             dialog.FontChanged += (s, ev) => Font2 = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
             dialog.ShowDialog(this);
             lblFont2.Text = Font2String;
