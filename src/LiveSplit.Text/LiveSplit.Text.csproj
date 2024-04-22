@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\LiveSplit.Core\LiveSplit.Core.csproj" Private="false" ExcludeAssets="runtime" />
-    <ProjectReference Include="..\..\..\..\src\UpdateManager\UpdateManager.csproj" Private="false" ExcludeAssets="runtime" />
-    <ProjectReference Include="..\..\..\..\lib\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="$(LsSrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="$(LsSrcPath)\UpdateManager\UpdateManager.csproj" Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="$(LsLibPath)\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" Private="false" ExcludeAssets="runtime" />
   </ItemGroup>
 
 </Project>
