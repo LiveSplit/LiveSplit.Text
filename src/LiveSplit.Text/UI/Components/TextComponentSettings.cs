@@ -73,27 +73,27 @@ public partial class TextComponentSettings : UserControl
         chkFont2.DataBindings.Add("Checked", this, "OverrideFont2", false, DataSourceUpdateMode.OnPropertyChanged);
     }
 
-    void chkFont2_CheckedChanged(object sender, EventArgs e)
+    private void chkFont2_CheckedChanged(object sender, EventArgs e)
     {
         label7.Enabled = lblFont2.Enabled = btnFont2.Enabled = chkFont2.Checked;
     }
 
-    void chkFont_CheckedChanged(object sender, EventArgs e)
+    private void chkFont_CheckedChanged(object sender, EventArgs e)
     {
         label5.Enabled = lblFont.Enabled = btnFont.Enabled = chkFont.Checked;
     }
 
-    void chkOverrideTimeColor_CheckedChanged(object sender, EventArgs e)
+    private void chkOverrideTimeColor_CheckedChanged(object sender, EventArgs e)
     {
         label2.Enabled = btnTimeColor.Enabled = chkOverrideTimeColor.Checked;
     }
 
-    void chkOverrideTextColor_CheckedChanged(object sender, EventArgs e)
+    private void chkOverrideTextColor_CheckedChanged(object sender, EventArgs e)
     {
         label1.Enabled = btnTextColor.Enabled = chkOverrideTextColor.Checked;
     }
 
-    void TextComponentSettings_Load(object sender, EventArgs e)
+    private void TextComponentSettings_Load(object sender, EventArgs e)
     {
         chkOverrideTextColor_CheckedChanged(null, null);
         chkOverrideTimeColor_CheckedChanged(null, null);
@@ -113,7 +113,7 @@ public partial class TextComponentSettings : UserControl
         }
     }
 
-    void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
+    private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
     {
         btnColor1.Visible = cmbGradientType.SelectedItem.ToString() != "Plain";
         btnColor2.DataBindings.Clear();
