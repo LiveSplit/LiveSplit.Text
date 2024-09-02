@@ -142,7 +142,7 @@ public partial class TextComponentSettings : UserControl
 
     public XmlNode GetSettings(XmlDocument document)
     {
-        var parent = document.CreateElement("Settings");
+        XmlElement parent = document.CreateElement("Settings");
         CreateSettingsNode(document, parent);
         return parent;
     }
@@ -178,7 +178,7 @@ public partial class TextComponentSettings : UserControl
 
     private void btnFont1_Click(object sender, EventArgs e)
     {
-        var dialog = SettingsHelper.GetFontDialog(Font1, 11, 26);
+        CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(Font1, 11, 26);
         dialog.FontChanged += (s, ev) => Font1 = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
         dialog.ShowDialog(this);
         lblFont.Text = Font1String;
@@ -186,7 +186,7 @@ public partial class TextComponentSettings : UserControl
 
     private void btnFont2_Click(object sender, EventArgs e)
     {
-        var dialog = SettingsHelper.GetFontDialog(Font2, 11, 26);
+        CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(Font2, 11, 26);
         dialog.FontChanged += (s, ev) => Font2 = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
         dialog.ShowDialog(this);
         lblFont2.Text = Font2String;
