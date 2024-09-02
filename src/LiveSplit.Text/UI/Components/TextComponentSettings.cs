@@ -19,18 +19,18 @@ public partial class TextComponentSettings : UserControl
     public GradientType BackgroundGradient { get; set; }
     public string GradientString
     {
-        get { return BackgroundGradient.ToString(); }
-        set { BackgroundGradient = (GradientType)Enum.Parse(typeof(GradientType), value); }
+        get => BackgroundGradient.ToString();
+        set => BackgroundGradient = (GradientType)Enum.Parse(typeof(GradientType), value);
     }
 
     public string Text1 { get; set; }
     public string Text2 { get; set; }
 
     public Font Font1 { get; set; }
-    public string Font1String { get { return string.Format("{0} {1}", Font1.FontFamily.Name, Font1.Style); } }
+    public string Font1String => string.Format("{0} {1}", Font1.FontFamily.Name, Font1.Style);
     public bool OverrideFont1 { get; set; }
     public Font Font2 { get; set; }
-    public string Font2String { get { return string.Format("{0} {1}", Font2.FontFamily.Name, Font2.Style); } }
+    public string Font2String => string.Format("{0} {1}", Font2.FontFamily.Name, Font2.Style);
     public bool OverrideFont2 { get; set; }
 
     public LayoutMode Mode { get; set; }

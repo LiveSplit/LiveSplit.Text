@@ -15,7 +15,10 @@ public class TextComponentFactory : IComponentFactory
 
     public ComponentCategory Category => ComponentCategory.Information;
 
-    public IComponent Create(LiveSplitState state) => new TextComponent(state);
+    public IComponent Create(LiveSplitState state)
+    {
+        return new TextComponent(state);
+    }
 
     public string UpdateName => ComponentName;
 
