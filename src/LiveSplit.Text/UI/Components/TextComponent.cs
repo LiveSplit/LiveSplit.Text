@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 using LiveSplit.Model;
+using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.UI.Components;
 
@@ -119,11 +120,14 @@ public class TextComponent : IComponent
 
     public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
     {
-        InternalComponent.InformationName = Settings.Text1;
-        InternalComponent.InformationValue = Settings.Text2;
-        InternalComponent.LongestString = Settings.Text1.Length > Settings.Text2.Length
-            ? Settings.Text1
+        string text2Value = Settings.CustomVariable
+            ? (state.Run.Metadata.CustomVariableValue(Settings.Text2) ?? TimeFormatConstants.DASH)
             : Settings.Text2;
+        InternalComponent.InformationName = Settings.Text1;
+        InternalComponent.InformationValue = text2Value;
+        InternalComponent.LongestString = Settings.Text1.Length > text2Value.Length
+            ? Settings.Text1
+            : text2Value;
 
         InternalComponent.Update(invalidator, state, width, height, mode);
     }
