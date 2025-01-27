@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -65,6 +66,7 @@
             this.btnColor2 = new System.Windows.Forms.Button();
             this.chkTwoRows = new System.Windows.Forms.CheckBox();
             this.chkCustomVariable = new System.Windows.Forms.CheckBox();
+            this.toolTipCustomVariable = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -112,7 +114,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 4);
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 61);
+            this.groupBox1.Location = new System.Drawing.Point(3, 90);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(439, 215);
             this.groupBox1.TabIndex = 4;
@@ -203,7 +205,7 @@
             this.chkFont.TabIndex = 0;
             this.chkFont.Text = "Override Layout Settings";
             this.chkFont.UseVisualStyleBackColor = true;
-            this.chkFont.CheckedChanged += new System.EventHandler(chkFont_CheckedChanged);
+            this.chkFont.CheckedChanged += new System.EventHandler(this.chkFont_CheckedChanged);
             // 
             // label5
             // 
@@ -267,7 +269,7 @@
             this.chkOverrideTextColor.TabIndex = 0;
             this.chkOverrideTextColor.Text = "Override Layout Settings";
             this.chkOverrideTextColor.UseVisualStyleBackColor = true;
-            this.chkOverrideTextColor.CheckedChanged += new System.EventHandler(chkOverrideTextColor_CheckedChanged);
+            this.chkOverrideTextColor.CheckedChanged += new System.EventHandler(this.chkOverrideTextColor_CheckedChanged);
             // 
             // label1
             // 
@@ -303,7 +305,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 4);
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 282);
+            this.groupBox2.Location = new System.Drawing.Point(3, 311);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(439, 215);
             this.groupBox2.TabIndex = 5;
@@ -393,7 +395,7 @@
             this.chkFont2.TabIndex = 0;
             this.chkFont2.Text = "Override Layout Settings";
             this.chkFont2.UseVisualStyleBackColor = true;
-            this.chkFont2.CheckedChanged += new System.EventHandler(chkFont2_CheckedChanged);
+            this.chkFont2.CheckedChanged += new System.EventHandler(this.chkFont2_CheckedChanged);
             // 
             // label7
             // 
@@ -469,7 +471,7 @@
             this.chkOverrideTimeColor.TabIndex = 0;
             this.chkOverrideTimeColor.Text = "Override Layout Settings";
             this.chkOverrideTimeColor.UseVisualStyleBackColor = true;
-            this.chkOverrideTimeColor.CheckedChanged += new System.EventHandler(chkOverrideTimeColor_CheckedChanged);
+            this.chkOverrideTimeColor.CheckedChanged += new System.EventHandler(this.chkOverrideTimeColor_CheckedChanged);
             // 
             // label2
             // 
@@ -555,14 +557,20 @@
             // 
             this.chkCustomVariable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkCustomVariable.AutoSize = true;
-            this.chkCustomVariable.Location = new System.Drawing.Point(7, 35);
+            this.chkCustomVariable.Location = new System.Drawing.Point(7, 64);
             this.chkCustomVariable.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkCustomVariable.Name = "chkCustomVariable";
             this.chkCustomVariable.Size = new System.Drawing.Size(149, 17);
             this.chkCustomVariable.TabIndex = 3;
             this.chkCustomVariable.Text = "Custom Variable";
+            this.toolTipCustomVariable.SetToolTip(this.chkCustomVariable, "Specifies whether to use a custom variable to display a dynamic value from an aut" +
+        "osplitter.");
             this.chkCustomVariable.UseVisualStyleBackColor = true;
-            this.chkCustomVariable.CheckedChanged += new System.EventHandler(chkCustomVariable_CheckedChanged);
+            this.chkCustomVariable.CheckedChanged += new System.EventHandler(this.chkCustomVariable_CheckedChanged);
+            // 
+            // toolTipCustomVariable
+            // 
+            this.toolTipCustomVariable.ToolTipTitle = "Custom Variable";
             // 
             // TextComponentSettings
             // 
@@ -572,7 +580,7 @@
             this.Name = "TextComponentSettings";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Size = new System.Drawing.Size(459, 543);
-            this.Load += new System.EventHandler(TextComponentSettings_Load);
+            this.Load += new System.EventHandler(this.TextComponentSettings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -636,5 +644,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chkTwoRows;
         private System.Windows.Forms.CheckBox chkCustomVariable;
+        private System.Windows.Forms.ToolTip toolTipCustomVariable;
     }
 }
