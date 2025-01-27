@@ -120,6 +120,7 @@ public partial class TextComponentSettings : UserControl
     private void chkCustomVariable_CheckedChanged(object sender, EventArgs e)
     {
         CustomVariable = chkCustomVariable.Checked;
+        label4.Text = CustomVariable ? "Custom Variable Name:" : "Text:";
     }
 
     private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
