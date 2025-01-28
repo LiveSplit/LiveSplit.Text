@@ -35,6 +35,7 @@ public partial class TextComponentSettings : UserControl
 
     public LayoutMode Mode { get; set; }
     public bool Display2Rows { get; set; }
+    public bool CustomVariable { get; set; }
 
     public LiveSplitState CurrentState { get; set; }
 
@@ -55,6 +56,8 @@ public partial class TextComponentSettings : UserControl
         OverrideFont2 = false;
         Font1 = new Font("Segoe UI", 16, FontStyle.Regular, GraphicsUnit.Pixel);
         Font2 = new Font("Segoe UI", 16, FontStyle.Regular, GraphicsUnit.Pixel);
+
+        chkCustomVariable.DataBindings.Add("Checked", this, "CustomVariable", false, DataSourceUpdateMode.OnPropertyChanged);
 
         chkOverrideTextColor.DataBindings.Add("Checked", this, "OverrideTextColor", false, DataSourceUpdateMode.OnPropertyChanged);
         btnTextColor.DataBindings.Add("BackColor", this, "TextColor", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -95,6 +98,7 @@ public partial class TextComponentSettings : UserControl
 
     private void TextComponentSettings_Load(object sender, EventArgs e)
     {
+        chkCustomVariable_CheckedChanged(null, null);
         chkOverrideTextColor_CheckedChanged(null, null);
         chkOverrideTimeColor_CheckedChanged(null, null);
         chkFont_CheckedChanged(null, null);
@@ -111,6 +115,12 @@ public partial class TextComponentSettings : UserControl
             chkTwoRows.DataBindings.Clear();
             chkTwoRows.DataBindings.Add("Checked", this, "Display2Rows", false, DataSourceUpdateMode.OnPropertyChanged);
         }
+    }
+
+    private void chkCustomVariable_CheckedChanged(object sender, EventArgs e)
+    {
+        CustomVariable = chkCustomVariable.Checked;
+        label4.Text = CustomVariable ? "Custom Variable Name:" : "Text:";
     }
 
     private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
@@ -138,6 +148,7 @@ public partial class TextComponentSettings : UserControl
         OverrideFont1 = SettingsHelper.ParseBool(element["OverrideFont1"]);
         OverrideFont2 = SettingsHelper.ParseBool(element["OverrideFont2"]);
         Display2Rows = SettingsHelper.ParseBool(element["Display2Rows"], false);
+        CustomVariable = SettingsHelper.ParseBool(element["CustomVariable"], false);
     }
 
     public XmlNode GetSettings(XmlDocument document)
@@ -168,7 +179,8 @@ public partial class TextComponentSettings : UserControl
         SettingsHelper.CreateSetting(document, parent, "Font2", Font2) ^
         SettingsHelper.CreateSetting(document, parent, "OverrideFont1", OverrideFont1) ^
         SettingsHelper.CreateSetting(document, parent, "OverrideFont2", OverrideFont2) ^
-        SettingsHelper.CreateSetting(document, parent, "Display2Rows", Display2Rows);
+        SettingsHelper.CreateSetting(document, parent, "Display2Rows", Display2Rows) ^
+        SettingsHelper.CreateSetting(document, parent, "CustomVariable", CustomVariable);
     }
 
     private void ColorButtonClick(object sender, EventArgs e)
