@@ -9,6 +9,7 @@ using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.UI.Components;
 
+[GlobalFontConsumer(GlobalFont.TextFont)]
 public class TextComponent : IComponent
 {
     protected TextTextComponent InternalComponent { get; set; }
@@ -111,6 +112,16 @@ public class TextComponent : IComponent
     public void SetSettings(System.Xml.XmlNode settings)
     {
         Settings.SetSettings(settings);
+    }
+
+    public void MigrateFontOverrides(Options.FontOverrides overrides)
+    {
+        if (Settings.OverrideFont1 && Settings.Font1 != null)
+        {
+            overrides.OverrideTextFont = true;
+            overrides.TextFont = (Font)Settings.Font1.Clone();
+            Settings.OverrideFont1 = false;
+        }
     }
 
     public System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
